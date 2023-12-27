@@ -1,0 +1,8 @@
+[
+{
+  "directory": "C:/Users/Michael Ladderbush/Desktop/C++ Projects/AudioAnalyzer/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\C__~1.EXE -g -o CMakeFiles\\AudioAnalyzer.dir\\src\\main.cpp.obj -c \"C:\\Users\\Michael Ladderbush\\Desktop\\C++ Projects\\AudioAnalyzer\\src\\main.cpp\"",
+  "file": "C:\\Users\\Michael Ladderbush\\Desktop\\C++ Projects\\AudioAnalyzer\\src\\main.cpp",
+  "output": "CMakeFiles\\AudioAnalyzer.dir\\src\\main.cpp.obj"
+}
+]

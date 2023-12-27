@@ -1,0 +1,22 @@
+# ninja log v5
+568	748	7249127807819676	AudioAnalyzer.exe	e9b535c8aedc7497
+16	567	7249127806054711	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
+23	33	0	clean	de280340a052dfea
+16	550	7249128023881919	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
+551	672	7249128025068743	AudioAnalyzer.exe	e9b535c8aedc7497
+25	652	7249129257294037	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
+653	823	7249129258919713	AudioAnalyzer.exe	e9b535c8aedc7497
+30	647	7249132347153817	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
+648	773	7249132348370224	AudioAnalyzer.exe	e9b535c8aedc7497
+26	651	7249133196607990	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
+652	776	7249133197804789	AudioAnalyzer.exe	e9b535c8aedc7497
+25	650	7249133452409374	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
+651	775	7249133453626117	AudioAnalyzer.exe	e9b535c8aedc7497
+39	5460	7249904448908020	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
+5460	7048	7249904464751766	AudioAnalyzer.exe	e9b535c8aedc7497
+35	739	7249905611269516	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
+739	865	7249905612496234	AudioAnalyzer.exe	e9b535c8aedc7497
+33	726	7249913817132644	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
+727	848	7249913818299520	AudioAnalyzer.exe	e9b535c8aedc7497
+5	598	7249914654722287	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
+599	721	7249914655909001	AudioAnalyzer.exe	e9b535c8aedc7497

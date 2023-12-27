@@ -1,0 +1,3 @@
+C:/Users/Michael Ladderbush/Desktop/C++ Projects/AudioAnalyzer/build/CMakeFiles/AudioAnalyzer.dir
+C:/Users/Michael Ladderbush/Desktop/C++ Projects/AudioAnalyzer/build/CMakeFiles/edit_cache.dir
+C:/Users/Michael Ladderbush/Desktop/C++ Projects/AudioAnalyzer/build/CMakeFiles/rebuild_cache.dir
