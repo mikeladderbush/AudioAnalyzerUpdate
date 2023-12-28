@@ -114,9 +114,6 @@ int decodeMp3(std::string mp3file)
             // My unordered_map containing bitrates mentioned above.
             std::unordered_map<std::bitset<8>, std::string> bitrateMap;
 
-            // Here I am going to create a separate variable that concatenates previous variables in order to better find our bitrate.
-            std::bitset<8> bitrateIndexValue = (((syncbits.to_ulong() >> 12) & 0b1111) << ((syncbits.to_ulong() >> 17) & 0b11) << ((syncbits.to_ulong() >> 19) & 0b11));
-
             bitrateMap[std::bitset<8>("00000110")] = "Free";
             bitrateMap[std::bitset<8>("00001010")] = "Free";
             bitrateMap[std::bitset<8>("00001110")] = "Free";
@@ -229,9 +226,8 @@ int decodeMp3(std::string mp3file)
             bitrateMap[std::bitset<8>("11111011")] = "bad";
             bitrateMap[std::bitset<8>("11111111")] = "bad";
 
+            std::bitset<8> bitrateIndexValue = (((syncbits.to_ulong() >> 12) & 0b1111) << 5) | (((syncbits.to_ulong() >> 17) & 0b11) << 2) | ((syncbits.to_ulong() >> 19) & 0b11);
             std::string finalBitrate = bitrateMap[bitrateIndexValue];
-
-            mp3fileStream.seekg(4, std::ios::cur);
         }
         else
         {
