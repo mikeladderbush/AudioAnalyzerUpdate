@@ -39,7 +39,7 @@ int calculateBitrate(std::bitset<2> mpegVersion, std::bitset<2> layer, std::bits
     return bitrate;
 }
 
-// Need to update system to recognize where to look for next frame header.
+// Next step is to calculate the size of the frame data halves and then find the next frame header.
 
 int decodeMp3(std::string mp3file)
 {
