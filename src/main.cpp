@@ -54,42 +54,114 @@ int calculateBitrate(std::bitset<2> mpegVersion, std::bitset<2> layer, std::bits
 
 int calculateSamplesPerFrame(std::bitset<2> mpegVersion, std::bitset<2> layer)
 {
+    // Samples per frame in bytes.
     int samplesPerFrame;
     // Version 1
     // Layer 1
     if (mpegVersion == std::bitset<2>("11") && layer == std::bitset<2>("11"))
     {
+        samplesPerFrame = 384;
     }
     // Layer 2
     else if (mpegVersion == std::bitset<2>("11") && layer == std::bitset<2>("10"))
     {
+        samplesPerFrame = 1152;
     }
     // Layer 3
     else if (mpegVersion == std::bitset<2>("11") && layer == std::bitset<2>("01"))
     {
+        samplesPerFrame = 1152;
     }
 
     // Version 2 and 2.5
     // Layer 1
     else if (mpegVersion == std::bitset<2>("10") && layer == std::bitset<2>("11"))
     {
+        samplesPerFrame = 384;
+    }
+    // Layer 2
+    else if (mpegVersion == std::bitset<2>("10") && layer == std::bitset<2>("10"))
+    {
+        samplesPerFrame = 1152;
     }
     // Layer 3
     else if (mpegVersion == std::bitset<2>("10") && layer == std::bitset<2>("01"))
     {
+        samplesPerFrame = 576;
     }
 
     // Reserved
     else
     {
+        samplesPerFrame = 0;
     }
     return samplesPerFrame;
 }
 
+int calculatePaddingSize(std::bitset<1> paddingBit, std::bitset<2> layer)
+{
+}
+
 // FrameSize = Bitrate * 1000/8 * SamplesPerFrame / Frequency + IsPadding * PaddingSize
 
-int calculateFrameSize(int bitrate, int samplesPerFrame, std::bitset<2> frequency, std::bitset<1> paddingBit)
+int calculateFrameSize(int bitrate, int samplesPerFrame, std::bitset<2> mpegVersion, std::bitset<2> frequency)
 {
+    int sampleRate;
+    // 44100Hz
+    // Version 1
+    if (frequency == std::bitset<2>("00") && mpegVersion == std::bitset<2>("11"))
+    {
+        sampleRate = 44100;
+    }
+    // 22050Hz
+    // Version 2
+    else if (frequency == std::bitset<2>("00") && mpegVersion == std::bitset<2>("10"))
+    {
+        sampleRate = 22050;
+    }
+    // 11025Hz
+    // Version 2.5
+    else if (frequency == std::bitset<2>("00") && mpegVersion == std::bitset<2>("00"))
+    {
+        sampleRate = 11025;
+    }
+    // 48000Hz
+    // Version 1
+    else if (frequency == std::bitset<2>("01") && mpegVersion == std::bitset<2>("11"))
+    {
+        sampleRate = 48000;
+    }
+    // 24000Hz
+    // Version 2
+    else if (frequency == std::bitset<2>("01") && mpegVersion == std::bitset<2>("10"))
+    {
+        sampleRate = 24000;
+    }
+    // 12000Hz
+    // Version 2.5
+    else if (frequency == std::bitset<2>("01") && mpegVersion == std::bitset<2>("00"))
+    {
+        sampleRate = 12000;
+    }
+    // 32000Hz
+    // Version 1
+    else if (frequency == std::bitset<2>("10") && mpegVersion == std::bitset<2>("11"))
+    {
+        sampleRate = 32000;
+    }
+    // 16000Hz
+    // Version 2
+    else if (frequency == std::bitset<2>("10") && mpegVersion == std::bitset<2>("10"))
+    {
+        sampleRate = 16000;
+    }
+    // 8000Hz
+    // Version 2.5
+    else
+    {
+        sampleRate = 8000;
+    }
+    int frameSize = ((bitrate * 1000) / 8) / sampleRate;
 }
 
 // Next step is to calculate the size of the frame data halves and then find the next frame header.
@@ -168,7 +240,7 @@ int decodeMp3(std::string mp3file)
 
             int calculatedSampleRate = calculateSamplesPerFrame(extractedMpegVersion, extractedLayerDescription);
 
-            int calculatedFrameSize = calculateFrameSize(calculatedBitrate, calculatedSampleRate, extractedFrequencyIndex, extractedPaddingBit);
+            int calculatedFrameSize = calculateFrameSize(calculatedBitrate, calculatedSampleRate, extractedMpegVersion, extractedFrequencyIndex);
 
             // The Private bit. This one is only informative.
             std::bitset<1> extractedPrivateBit((syncbits.to_ulong() >> 8) & 0b1);
