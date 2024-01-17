@@ -36,7 +36,6 @@ int calculateBitrate(std::bitset<2> mpegVersion, std::bitset<2> layer, std::bits
     {
         bitrate = bitrateIndex.to_ulong() * 8 + 8;
     }
-    std::cout << bitrate << std::endl;
     return bitrate;
 }
 
@@ -52,7 +51,7 @@ int calculateBitrate(std::bitset<2> mpegVersion, std::bitset<2> layer, std::bits
     -Jud, https://hydrogenaud.io/index.php/topic,32036.0.html
 */
 
-int calculateSamplesPerFrame(std::bitset<2> mpegVersion, std::bitset<2> layer)
+int calculateSampleRate(std::bitset<2> mpegVersion, std::bitset<2> layer)
 {
     // Samples per frame in bytes.
     int samplesPerFrame;
@@ -98,13 +97,9 @@ int calculateSamplesPerFrame(std::bitset<2> mpegVersion, std::bitset<2> layer)
     return samplesPerFrame;
 }
 
-int calculatePaddingSize(std::bitset<1> paddingBit, std::bitset<2> layer)
-{
-}
-
 // FrameSize = Bitrate * 1000/8 * SamplesPerFrame / Frequency + IsPadding * PaddingSize
 
-int calculateFrameSize(int bitrate, int samplesPerFrame, std::bitset<2> mpegVersion, std::bitset<2> frequency)
+int calculateFrameSize(int bitrate, int samplesPerFrame, std::bitset<2> mpegVersion, std::bitset<2> frequency, std::bitset<1> paddingBit)
 {
     int sampleRate;
     // 44100Hz
@@ -161,7 +156,20 @@ int calculateFrameSize(int bitrate, int samplesPerFrame, std::bitset<2> mpegVers
     {
         sampleRate = 8000;
     }
-    int frameSize = ((bitrate * 1000) / 8) / sampleRate;
+
+    int padding;
+
+    if (paddingBit == std::bitset<1>("0"))
+    {
+        padding = 0;
+    }
+    else
+    {
+        padding = 1;
+    }
+
+    int frameSize = 144 * bitrate / ((sampleRate / 1000) + padding);
+    return frameSize;
 }
 
 // Next step is to calculate the size of the frame data halves and then find the next frame header.
@@ -238,9 +246,9 @@ int decodeMp3(std::string mp3file)
             // Here is the padding bit.
             std::bitset<1> extractedPaddingBit((syncbits.to_ulong() >> 9) & 0b1);
 
-            int calculatedSampleRate = calculateSamplesPerFrame(extractedMpegVersion, extractedLayerDescription);
+            int calculatedSampleRate = calculateSampleRate(extractedMpegVersion, extractedLayerDescription);
 
-            int calculatedFrameSize = calculateFrameSize(calculatedBitrate, calculatedSampleRate, extractedMpegVersion, extractedFrequencyIndex);
+            int calculatedFrameSize = calculateFrameSize(calculatedBitrate, calculatedSampleRate, extractedMpegVersion, extractedFrequencyIndex, extractedPaddingBit);
 
             // The Private bit. This one is only informative.
             std::bitset<1> extractedPrivateBit((syncbits.to_ulong() >> 8) & 0b1);
@@ -259,6 +267,8 @@ int decodeMp3(std::string mp3file)
 
             // Finally there are 2 bits for emphasis, which is rarely used.
             std::bitset<2> extractedEmphasisBits((syncbits.to_ulong() >> 0) & 0b11);
+
+            mp3fileStream.seekg(calculatedFrameSize - 4, std::ios::cur);
         }
         else
         {
