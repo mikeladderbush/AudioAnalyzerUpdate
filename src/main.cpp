@@ -268,6 +268,11 @@ int decodeMp3(std::string mp3file)
             // Finally there are 2 bits for emphasis, which is rarely used.
             std::bitset<2> extractedEmphasisBits((syncbits.to_ulong() >> 0) & 0b11);
 
+            // Next challenge is to move on from the frame header and analyze the samples. Need to start planning
+            // on how I'm going to separate that out to be more efficient but for now I'll just get it working.
+
+            //TODO: function to return sample data.
+
             mp3fileStream.seekg(calculatedFrameSize - 4, std::ios::cur);
         }
         else
