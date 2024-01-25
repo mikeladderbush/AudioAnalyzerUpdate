@@ -1,6 +1,14 @@
 # ninja log v5
 23	33	0	clean	de280340a052dfea
-6	647	7271547773624503	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
-648	772	7271547774791379	AudioAnalyzer.exe	e9b535c8aedc7497
-19	1110	7275630604358543	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
-1111	2335	7275630616552850	AudioAnalyzer.exe	e9b535c8aedc7497
+18	678	7278467040379805	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
+26	661	7278467040210297	CMakeFiles/AudioAnalyzer.dir/src/header_helper.cpp.obj	ea2394a79c650d9f
+659	777	7278444001330997	AudioAnalyzer.exe	e9b535c8aedc7497
+23	687	7278467040469564	CMakeFiles/AudioAnalyzer.dir/src/header.cpp.obj	848d594467766363
+23	538	7278468257704472	CMakeFiles/AudioAnalyzer.dir/src/header_helper.cpp.obj	ea2394a79c650d9f
+19	566	7278468257983727	CMakeFiles/AudioAnalyzer.dir/src/header.cpp.obj	848d594467766363
+19	534	7278469892917458	CMakeFiles/AudioAnalyzer.dir/src/header_helper.cpp.obj	ea2394a79c650d9f
+15	567	7278469893266516	CMakeFiles/AudioAnalyzer.dir/src/header.cpp.obj	848d594467766363
+23	572	7278471594535080	CMakeFiles/AudioAnalyzer.dir/src/header_helper.cpp.obj	ea2394a79c650d9f
+20	594	7278471594754500	CMakeFiles/AudioAnalyzer.dir/src/header.cpp.obj	848d594467766363
+16	622	7278471595053685	CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj	23ba53fb854c0a5
+623	745	7278471596230537	AudioAnalyzer.exe	9eae27b0ac9d4d76

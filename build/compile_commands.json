@@ -4,5 +4,17 @@
   "command": "C:\\PROGRA~1\\mingw64\\bin\\C__~1.EXE -g -o CMakeFiles\\AudioAnalyzer.dir\\src\\main.cpp.obj -c \"C:\\Users\\Michael Ladderbush\\Desktop\\C++ Projects\\AudioAnalyzer\\src\\main.cpp\"",
   "file": "C:\\Users\\Michael Ladderbush\\Desktop\\C++ Projects\\AudioAnalyzer\\src\\main.cpp",
   "output": "CMakeFiles\\AudioAnalyzer.dir\\src\\main.cpp.obj"
+},
+{
+  "directory": "C:/Users/Michael Ladderbush/Desktop/C++ Projects/AudioAnalyzer/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\C__~1.EXE -g -o CMakeFiles\\AudioAnalyzer.dir\\src\\header.cpp.obj -c \"C:\\Users\\Michael Ladderbush\\Desktop\\C++ Projects\\AudioAnalyzer\\src\\header.cpp\"",
+  "file": "C:\\Users\\Michael Ladderbush\\Desktop\\C++ Projects\\AudioAnalyzer\\src\\header.cpp",
+  "output": "CMakeFiles\\AudioAnalyzer.dir\\src\\header.cpp.obj"
+},
+{
+  "directory": "C:/Users/Michael Ladderbush/Desktop/C++ Projects/AudioAnalyzer/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\C__~1.EXE -g -o CMakeFiles\\AudioAnalyzer.dir\\src\\header_helper.cpp.obj -c \"C:\\Users\\Michael Ladderbush\\Desktop\\C++ Projects\\AudioAnalyzer\\src\\header_helper.cpp\"",
+  "file": "C:\\Users\\Michael Ladderbush\\Desktop\\C++ Projects\\AudioAnalyzer\\src\\header_helper.cpp",
+  "output": "CMakeFiles\\AudioAnalyzer.dir\\src\\header_helper.cpp.obj"
 }
 ]

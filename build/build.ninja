@@ -55,6 +55,18 @@ build CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj: CXX_COMPILER__AudioAnalyzer
   OBJECT_DIR = CMakeFiles\AudioAnalyzer.dir
   OBJECT_FILE_DIR = CMakeFiles\AudioAnalyzer.dir\src
 
+build CMakeFiles/AudioAnalyzer.dir/src/header.cpp.obj: CXX_COMPILER__AudioAnalyzer_unscanned_Debug C$:/Users/Michael$ Ladderbush/Desktop/C++$ Projects/AudioAnalyzer/src/header.cpp || cmake_object_order_depends_target_AudioAnalyzer
+  DEP_FILE = CMakeFiles\AudioAnalyzer.dir\src\header.cpp.obj.d
+  FLAGS = -g
+  OBJECT_DIR = CMakeFiles\AudioAnalyzer.dir
+  OBJECT_FILE_DIR = CMakeFiles\AudioAnalyzer.dir\src
+
+build CMakeFiles/AudioAnalyzer.dir/src/header_helper.cpp.obj: CXX_COMPILER__AudioAnalyzer_unscanned_Debug C$:/Users/Michael$ Ladderbush/Desktop/C++$ Projects/AudioAnalyzer/src/header_helper.cpp || cmake_object_order_depends_target_AudioAnalyzer
+  DEP_FILE = CMakeFiles\AudioAnalyzer.dir\src\header_helper.cpp.obj.d
+  FLAGS = -g
+  OBJECT_DIR = CMakeFiles\AudioAnalyzer.dir
+  OBJECT_FILE_DIR = CMakeFiles\AudioAnalyzer.dir\src
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target AudioAnalyzer
@@ -63,7 +75,7 @@ build CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj: CXX_COMPILER__AudioAnalyzer
 #############################################
 # Link the executable AudioAnalyzer.exe
 
-build AudioAnalyzer.exe: CXX_EXECUTABLE_LINKER__AudioAnalyzer_Debug CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj
+build AudioAnalyzer.exe: CXX_EXECUTABLE_LINKER__AudioAnalyzer_Debug CMakeFiles/AudioAnalyzer.dir/src/main.cpp.obj CMakeFiles/AudioAnalyzer.dir/src/header.cpp.obj CMakeFiles/AudioAnalyzer.dir/src/header_helper.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\AudioAnalyzer.dir
