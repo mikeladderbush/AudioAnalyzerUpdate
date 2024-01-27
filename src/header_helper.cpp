@@ -36,16 +36,9 @@ int calculateBitrate(int mpegVersion, int layer, std::bitset<4> bitrateIndex)
         index = 4;
     }
 
-    if (index >= 0 && index < 5 && bitrateIndex.to_ulong() >= 0 && bitrateIndex.to_ulong() <= 16)
-    {
-        int bitrate = bitrateTable[index][bitrateIndex.to_ulong()];
-        return bitrate;
-    }
-    else
-    {
-        // Handle invalid indices
-        return -1;
-    }
+    int bitrate = bitrateTable[index][bitrateIndex.to_ulong()];
+    return bitrate;
+
 }
 
 /*
@@ -59,40 +52,40 @@ int calculateBitrate(int mpegVersion, int layer, std::bitset<4> bitrateIndex)
 
     -Jud, https://hydrogenaud.io/index.php/topic,32036.0.html
 */
-int calculateSampleRate(int mpegVersion, std::bitset<2> layer)
+int calculateSampleRate(int mpegVersion, int layer)
 {
     // Samples per frame in bytes.
     int samplesPerFrame;
     // Version 1
     // Layer 1
-    if (mpegVersion == 1 && layer == std::bitset<2>("11"))
+    if (mpegVersion == 1 && layer == 1)
     {
         samplesPerFrame = 384;
     }
     // Layer 2
-    else if (mpegVersion == 1 && layer == std::bitset<2>("10"))
+    else if (mpegVersion == 1 && layer == 2)
     {
         samplesPerFrame = 1152;
     }
     // Layer 3
-    else if (mpegVersion == 1 && layer == std::bitset<2>("01"))
+    else if (mpegVersion == 1 && layer == 3)
     {
         samplesPerFrame = 1152;
     }
 
     // Version 2 and 2.5
     // Layer 1
-    else if (mpegVersion == 2 && layer == std::bitset<2>("11"))
+    else if (mpegVersion == 2 && layer == 1)
     {
         samplesPerFrame = 384;
     }
     // Layer 2
-    else if (mpegVersion == 2 && layer == std::bitset<2>("10"))
+    else if (mpegVersion == 2 && layer == 2)
     {
         samplesPerFrame = 1152;
     }
     // Layer 3
-    else if (mpegVersion == 2 && layer == std::bitset<2>("01"))
+    else if (mpegVersion == 2 && layer == 3)
     {
         samplesPerFrame = 576;
     }
@@ -180,7 +173,8 @@ int calculateFrameSize(int bitrate, int samplesPerFrame, int mpegVersion, std::b
     The number of samples in a frame is 1152, divided by 8 gives 144. However, the sample header describes MPEG 2 Layer 3,
     which uses 576 samples per frame.  This yields 72 for Bits_Per_Sample.  So, 260 bytes is the size of two frames, not one.
     */
-    int frameSize = 144 * bitrate / ((sampleRate / 1000) + padding);
+    int samples = samplesPerFrame / 8; 
+    int frameSize = samples * bitrate / ((sampleRate / 1000) + padding);
     return frameSize + crcBits;
 }
 

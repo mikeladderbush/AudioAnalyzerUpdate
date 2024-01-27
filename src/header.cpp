@@ -178,7 +178,7 @@ frameHeader breakDownHeader(std::ifstream &mp3fileStream)
 
     int calculatedBitrate = calculateBitrate(mpegVersion, layer, extractedBitrateIndex);
 
-    int calculatedSampleRate = calculateSampleRate(mpegVersion, extractedLayerDescription);
+    int calculatedSampleRate = calculateSampleRate(mpegVersion, layer);
 
     int crcBits = calculateErrorCheckSize(extractedProtectionBit);
 

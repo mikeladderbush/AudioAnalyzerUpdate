@@ -7,7 +7,7 @@
 #include <cstdint>
 
 int calculateBitrate(int mpegVersion, int layer, std::bitset<4> bitrateIndex);
-int calculateSampleRate(int mpegVersion, std::bitset<2> layer);
+int calculateSampleRate(int mpegVersion, int layer);
 int calculateFrameSize(int bitrate, int samplesPerFrame, int mpegVersion, std::bitset<2> frequency, std::bitset<1> paddingBit, int crcBits);
 int calculateErrorCheckSize(std::bitset<1> protectionBit);
 int calculateChannelMode(std::bitset<2> channelBit);

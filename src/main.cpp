@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <bitset>
 #include "header.h"
 
 int main()
@@ -17,17 +18,23 @@ int main()
         return 1;
     }
 
-    char header[4];
-    file.read(header, 4);
+    char id3Header[10];
+    file.read(id3Header, 10);
 
-    if (header[0] == 'I' && header[1] == 'D' && header[2] == '3')
+    if (file && id3Header[0] == 'I' && id3Header[1] == 'D' && id3Header[2] == '3')
     {
-        std::cout << "Skipping ID3 Tag" << std::endl;
-        file.seekg(10, std::ios::cur);
+        std::bitset<32> sizeBits((id3Header[6] << 21) | (id3Header[7] << 14) | (id3Header[8] << 7) | id3Header[9]);
+        int id3DataSize = sizeBits.to_ulong();
+
+        int totalId3Length = 10 + id3DataSize;
+
+        std::cout << "Total length of ID3 information: " << totalId3Length << " bytes." << std::endl;
+
+        file.seekg(totalId3Length, std::ios::beg);
     }
     else
     {
-        file.seekg(0);
+        file.seekg(0, std::ios::beg);
     }
 
     while (!file.eof())
