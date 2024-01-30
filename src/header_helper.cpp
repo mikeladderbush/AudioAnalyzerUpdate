@@ -166,15 +166,11 @@ int calculateFrameSize(int bitrate, int samplesPerFrame, int mpegVersion, std::b
         padding = 1;
     }
 
-    /*
-    TODO: this was a mistake I made with calculating the framesize, we shouldnt use the 144 magic number.
-    The "144" is not a magic number, it's Bits_Per_Sample, which = (Samples_Per_Frame / 8).
-    The number of samples in a frame is 1152, divided by 8 gives 144. However, the sample header describes MPEG 2 Layer 3,
-    which uses 576 samples per frame.  This yields 72 for Bits_Per_Sample.  So, 260 bytes is the size of two frames, not one.
-    */
+    // Calculates the size of the frame in per amount of samples, not correct without decoding samples and getting true
+    // sizes accounted for, thats next.
     int samples = samplesPerFrame / 8;
     int frameSize = samples * bitrate / ((sampleRate / 1000) + padding);
-    return frameSize + crcBits;
+    return (frameSize + crcBits);
 }
 
 int calculateErrorCheckSize(std::bitset<1> protectionBit)
@@ -262,4 +258,3 @@ int calculateModeExtension(std::bitset<2> modeExtBit, int channelMode, std::bits
         }
     }
 }
-

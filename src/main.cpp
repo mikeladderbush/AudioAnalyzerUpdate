@@ -23,29 +23,14 @@ int main()
     unsigned int ID3Size = calculateID3Size(ID3Header);
     file.seekg(ID3Size + 10, std::ios::beg);
 
+    // TODO: Now that I have skipped over the ID3 tag and can locate a syncword/frame header I have to
+    // decode a frame in order to really get an idea of its size.
     while (!file.eof())
     {
-        char frameHeader[4];
-        file.read(frameHeader, 4);
-
-        if (!file)
-        {
-            if (file.eof())
-            {
-                break;
-            }
-            else
-            {
-                std::cerr << "Error Reading Frame Header." << std::endl;
-                break;
-            }
-        }
-
         currentFrame = breakDownHeader(file);
-        std::cout << currentFrame.calculatedFrameSize << std::endl;
         frameVector.push_back(currentFrame);
 
-        file.seekg(currentFrame.calculatedFrameSize - 4, std::ios::cur);
+        // TODO: add function to read over the frameheader and begin to decode the samples themselves.
     }
 
     file.close();
