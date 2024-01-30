@@ -38,7 +38,6 @@ int calculateBitrate(int mpegVersion, int layer, std::bitset<4> bitrateIndex)
 
     int bitrate = bitrateTable[index][bitrateIndex.to_ulong()];
     return bitrate;
-
 }
 
 /*
@@ -173,7 +172,7 @@ int calculateFrameSize(int bitrate, int samplesPerFrame, int mpegVersion, std::b
     The number of samples in a frame is 1152, divided by 8 gives 144. However, the sample header describes MPEG 2 Layer 3,
     which uses 576 samples per frame.  This yields 72 for Bits_Per_Sample.  So, 260 bytes is the size of two frames, not one.
     */
-    int samples = samplesPerFrame / 8; 
+    int samples = samplesPerFrame / 8;
     int frameSize = samples * bitrate / ((sampleRate / 1000) + padding);
     return frameSize + crcBits;
 }
@@ -263,3 +262,4 @@ int calculateModeExtension(std::bitset<2> modeExtBit, int channelMode, std::bits
         }
     }
 }
+

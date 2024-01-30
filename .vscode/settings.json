@@ -61,6 +61,16 @@
         "numbers": "cpp",
         "bitset": "cpp",
         "unordered_set": "cpp",
-        "map": "cpp"
+        "map": "cpp",
+        "charconv": "cpp",
+        "format": "cpp",
+        "locale": "cpp",
+        "xlocbuf": "cpp",
+        "xlocmes": "cpp",
+        "xlocmon": "cpp",
+        "xloctime": "cpp",
+        "span": "cpp",
+        "variant": "cpp",
+        "sstream": "cpp"
     }
 }

@@ -22,5 +22,6 @@ struct frameHeader
 };
 
 frameHeader breakDownHeader(std::ifstream &mp3fileStream);
+int calculateID3Size(char *ID3Header);
 
 #endif

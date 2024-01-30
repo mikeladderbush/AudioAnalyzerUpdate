@@ -1,6 +1,22 @@
 #include "header.h"
 #include "header_helper.h"
 
+int calculateID3Size(char *ID3Header)
+{
+    unsigned int totalSize = 0;
+
+    for (int i = 6; i < 10; i++)
+    {
+        unsigned char byte = static_cast<unsigned char>(ID3Header[i]);
+        std::bitset<8> binary(byte);
+        std::bitset<8> mask(0b01111111);
+        unsigned int binaryToInt = (binary & mask).to_ulong();
+        totalSize = (totalSize << 7) | binaryToInt;
+    }
+    std::cout << "ID3 Tag Size: " << totalSize << std::endl;
+    return totalSize;
+}
+
 frameHeader breakDownHeader(std::ifstream &mp3fileStream)
 {
 

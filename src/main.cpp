@@ -18,24 +18,10 @@ int main()
         return 1;
     }
 
-    char id3Header[10];
-    file.read(id3Header, 10);
-
-    if (file && id3Header[0] == 'I' && id3Header[1] == 'D' && id3Header[2] == '3')
-    {
-        std::bitset<32> sizeBits((id3Header[6] << 21) | (id3Header[7] << 14) | (id3Header[8] << 7) | id3Header[9]);
-        int id3DataSize = sizeBits.to_ulong();
-
-        int totalId3Length = 10 + id3DataSize;
-
-        std::cout << "Total length of ID3 information: " << totalId3Length << " bytes." << std::endl;
-
-        file.seekg(totalId3Length, std::ios::beg);
-    }
-    else
-    {
-        file.seekg(0, std::ios::beg);
-    }
+    char ID3Header[10];
+    file.read(ID3Header, 10);
+    unsigned int ID3Size = calculateID3Size(ID3Header);
+    file.seekg(ID3Size + 10, std::ios::beg);
 
     while (!file.eof())
     {
@@ -56,11 +42,10 @@ int main()
         }
 
         currentFrame = breakDownHeader(file);
+        std::cout << currentFrame.calculatedFrameSize << std::endl;
         frameVector.push_back(currentFrame);
 
         file.seekg(currentFrame.calculatedFrameSize - 4, std::ios::cur);
-
-        std::cout << "Bitrate: " << currentFrame.bitrate << std::endl;
     }
 
     file.close();
