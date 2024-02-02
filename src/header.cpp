@@ -44,6 +44,8 @@ frameHeader breakDownHeader(std::ifstream &mp3fileStream)
     uint32_t sync = (header[0] << 24) | (header[1] << 16) | (header[2] << 8) | header[3];
 
     std::bitset<32> syncbits(sync);
+    
+    // TODO: add statement to check if we are on the 11/12 bit syncword and if not using calculations in notebook to advance.
 
     // The MPEG Audio version ID which is 2 bits,
     std::bitset<2> extractedMpegVersion((syncbits.to_ulong() >> 19) & 0b11);
